@@ -3,6 +3,7 @@ import datetime
 
 class Post(models.Model):
     subject = models.CharField(max_length=256)
+    slug = models.CharField(max_length=256)
     body = models.TextField()
     pub_date = models.DateTimeField('publication date')
 

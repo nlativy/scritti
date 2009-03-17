@@ -1,0 +1,12 @@
+{% if latest_posts %}
+    <ul>
+    {% for post in latest_posts %}
+        <li>
+            <b>{{post.subject}}</b> <em>published: {{post.pub_date}}</em><br />
+            {{post.body}}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No posts</p>
+{% endif %}
