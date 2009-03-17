@@ -2,7 +2,7 @@
     <ul>
     {% for post in latest_posts %}
         <li>
-            <b>{{post.subject}}</b> <em>published: {{post.pub_date}}</em><br />
+            <b>{{post.title}}</b> <em>published: {{post.pub_date}}</em><br />
             <small><a href="{{post.get_absolute_url}}">permalink</a><br />
             {{post.body}}
         </li>

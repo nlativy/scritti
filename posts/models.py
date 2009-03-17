@@ -3,13 +3,13 @@ from django.db.models import permalink
 import datetime
 
 class Post(models.Model):
-    subject = models.CharField(max_length=256)
-    slug = models.CharField(max_length=256)
+    title = models.CharField(max_length=128)
+    slug = models.SlugField(max_length=128, unique=True)
     body = models.TextField()
     pub_date = models.DateTimeField('publication date')
 
     def __unicode__(self):
-        return self.subject
+        return self.title
 
     def get_absolute_url(self):
         return ('post_view', [str(self.slug)])

@@ -3,10 +3,11 @@ from django.contrib import admin
 
 class PostAdmin(admin.ModelAdmin):
     fieldsets = [
-            ('Post',                {'fields': ['subject', 'body']}),
+            ('Post',                {'fields': ['title', 'body']}),
             ('Date information',    {'fields': ['pub_date'], 'classes': ['collapse']}),
             ('Slug',                {'fields': ['slug']}),
         ]
-    list_display = ('subject', 'pub_date')
+    list_display = ('title', 'pub_date')
+    prepopulated_fields = {'slug': ('title',)}
 
 admin.site.register(Post, PostAdmin)
