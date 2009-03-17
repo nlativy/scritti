@@ -4,7 +4,7 @@ from django.contrib import admin
 class PostAdmin(admin.ModelAdmin):
     fieldsets = [
             ('Post',                {'fields': ['title', 'body']}),
-            ('Date information',    {'fields': ['pub_date'], 'classes': ['collapse']}),
+            #('Date information',    {'fields': ['pub_date'], 'classes': ['collapse']}),
             ('Slug',                {'fields': ['slug']}),
         ]
     list_display = ('title', 'pub_date')

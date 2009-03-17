@@ -8,6 +8,14 @@ class Post(models.Model):
     body = models.TextField()
     pub_date = models.DateTimeField('publication date')
 
+    def beforeSave(self):
+        if (not self.pub_date):
+            self.pub_date = datetime.datetime.now()
+
+    def save(self):
+        self.beforeSave()
+        super(Post, self).save()
+
     def __unicode__(self):
         return self.title
 
