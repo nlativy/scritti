@@ -1,0 +1,30 @@
+body {
+    margin:20px 20px 0px 20px;
+}
+
+#main {
+    border:1px solid #000; 
+    background:#fff;
+}
+
+#main #menu {
+    border-left:1px solid #000; 
+    border-bottom:1px solid #000;
+    float:right;
+    width:230px;
+    background:#eee;
+    margin:0px 0px 10px 10px;
+}
+
+p,h1,pre {
+    margin:0px 10px 10px 10px;
+}
+
+h1 {
+    font-size:14px;
+    padding-top:10px;
+}
+
+#menu p {
+    font-size:10px
+}
