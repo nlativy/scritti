@@ -2,31 +2,30 @@
       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>nrl's blog TODO: don't hardcode this</title>
+    <title>{{site_name}}</title>
     <link rel="stylesheet" type="text/css" href="/site_media/main.css" />
 </head>
 
 <body>
 <div id="main">
-<div id="menu">
-<ul>
-<li>Foo</li>
-<li>Bar</li>
-</ul>
-</div>
-{% if latest_posts %}
-    <ul>
-    {% for post in latest_posts %}
-        <li>
-            <b>{{post.title}}</b> <em>published: {{post.pub_date}}</em><br />
-            <small><a href="{{post.get_absolute_url}}">permalink</a><br />
-            {{post.body}}
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No posts</p>
-{% endif %}
+    <div id="menu">
+        <ul>
+        <li>Foo</li>
+        <li>Bar</li>
+        </ul>
+    </div>
+    <h1>{{site_name}}</h1>
+    {% if latest_posts %}
+        {% for post in latest_posts %}
+            <h3>{{post.title}}</h3>
+            <p>
+            <small>published: {{post.pub_date}} <a href="{{post.get_absolute_url}}">permalink</a></small>
+            </p>
+            <p>{{post.body}}</p>
+        {% endfor %}
+    {% else %}
+        <p>No posts</p>
+    {% endif %}
 </div>
 </body>
 </html>

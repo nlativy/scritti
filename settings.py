@@ -3,6 +3,7 @@
 import os
 
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+SITE_NAME = 'In Search of Lost Time'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -83,4 +84,12 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'scritti.posts',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'scritti.context_processors.site_name'
 )
