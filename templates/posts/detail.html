@@ -1,3 +1,3 @@
 <h1>{{post.title}}</h1>
 <h3>Publication date: {{post.pub_date}}</h3>
-<p>{{post.body}}</p>
+{{post.body_html|safe}}

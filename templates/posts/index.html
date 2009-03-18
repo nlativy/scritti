@@ -21,7 +21,7 @@
             <p>
             <small>published: {{post.pub_date}} <a href="{{post.get_absolute_url}}">permalink</a></small>
             </p>
-            <p>{{post.body}}</p>
+            {{post.body_html|safe}}
         {% endfor %}
     {% else %}
         <p>No posts</p>
