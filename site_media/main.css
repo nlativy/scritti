@@ -1,18 +1,57 @@
 body {
     font-family: Verdana, Arial, Helvetica, sans-serif;
+    text-align: left;
 }
-#main {
+
+#outer {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
     background: #ffffff;
 }
 
-#main #menu {
+#header {
+}
+
+#main {
+}
+
+#main #content {
+    float: left;
+    width: 70%;
+    clear: both;
+}
+
+#main #sidebar {
     float: right;
+    text-align: left;
     width: 30%;
-    background: #ffffff;
-    margin-top: 3em;
+    /*clear: both;*/
+}
+
+#sidebar .widget {
+    margin-left: 40px;
+    color: #323232;
+}
+
+.widget h3 {
+    font-weight: bold;
+    margin-bottom: 2px;
+    font-size: 0.8em;
+}
+
+.widget p {
+    margin-top: 2px;
+    font-size: 0.8em;
+}
+
+#footer {
+    clear: both;
+    margin: 0 auto;
+    padding-top: 30px;
+    text-align: left;
+    font-size: 0.7em;
+    color: #666666;
 }
 
 h1 {
@@ -24,6 +63,14 @@ h2 {
     border-bottom: 1px solid #999999;
     margin-bottom: 0.2px;
     padding-bottom: 0px;
+}
+
+h2 a {
+    display: block;
+    font-weight: normal;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    text-decoration: none;
 }
 
 small {
@@ -62,7 +109,6 @@ pre {
 }
 
 .post {
-    width: 60%;
     text-align: left;
 }
 
