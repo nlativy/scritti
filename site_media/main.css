@@ -16,14 +16,19 @@ body {
 }
 
 h1 {
-    font-size: 2em;
-}
-
-h2 {
     font-size: 1.5em;
 }
 
+h2 {
+    font-size: 1.2em;
+    border-bottom: 1px solid #999999;
+    margin-bottom: 0.2px;
+    padding-bottom: 0px;
+}
+
 small {
+    margin-top: 0px;
+    padding-top: 0.2px;
     font-size: 0.7em;
     color: #666666;
 }
@@ -54,4 +59,31 @@ p {
 pre {
     margin: 0px;
     padding: 0px;
+}
+
+.post {
+    width: 60%;
+    text-align: left;
+}
+
+.post .info {
+    font-size: 0.7em;
+    color: #787878;
+}
+
+.post .info .date {
+    float: left;
+}
+
+.post .info .details {
+    float: right;
+}
+
+.post .meta {
+    font-size: 0.7em;
+    color: #787878;
+}
+
+.post .content {
+    margin-top: 1.5em;
 }

@@ -18,11 +18,19 @@
     <h1>{{site_name}}</h1>
     {% if latest_posts %}
         {% for post in latest_posts %}
-            <h3>{{post.title}}</h3>
-            <p>
-            <small>published: {{post.pub_date}} <a href="{{post.get_absolute_url}}">permalink</a></small>
-            </p>
-            {{post.body_html|safe}}
+            <div class="post">
+                <h2>{{post.title}}</h2>
+                <div class="info">
+                    <span class="date">Published: {{post.pub_date}}</span>
+                    <span class="details"><a href="{{post.get_absolute_url}}">Comments</a></span>
+                </div>
+                <div class="content">
+                {{post.body_html|safe}}
+                </div>
+                <div class="meta">
+                Filed under Foo. Tagged: programming, foo, bar.
+                </div>
+            </div>
         {% endfor %}
     {% else %}
         <p>No posts</p>
