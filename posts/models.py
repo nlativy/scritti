@@ -1,7 +1,9 @@
+import datetime
+
 from django.db import models
 from django.db.models import permalink
-from markdown import markdown
-import datetime
+
+from utils import markdown_with_pygments
 
 class Post(models.Model):
     title = models.CharField(max_length=128)
@@ -14,7 +16,7 @@ class Post(models.Model):
         if (not self.pub_date):
             self.pub_date = datetime.datetime.now()
 
-        self.body_html = markdown(self.body)
+        self.body_html = markdown_with_pygments(self.body)
 
     def save(self):
         self.beforeSave()
@@ -26,3 +28,4 @@ class Post(models.Model):
     def get_absolute_url(self):
         return ('post_view', [str(self.slug)])
     get_absolute_url = permalink(get_absolute_url)
+
