@@ -35,11 +35,25 @@
         <div id="sidebar">
             <div class="widget">
                 <h3>Recent posts</h3>
-                <p>List of recent posts go here</p>
+                {% if latest_posts %}
+                    <ul>
+                    {% for post in latest_posts %}
+                        <li><a href="{{post.get_absolute_url}}">{{post.title}}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No posts</p>
+                {% endif %}
             </div>
             <div class="widget">
                 <h3>Links</h3>
-                <p>Links to other sites go here</p>
+                <ul>
+                <li><a href="fake">My photos</a></li>
+                <li><a href="fake">My Facebook</a></li>
+                <li><a href="fake">My Last.fm</a></li>
+                <li><a href="fake">My Wishlist</a></li>
+                <li><a href="fake">Source code</a></li>
+                </ul>
             </div>
             <div class="widget">
                 <h3>Recent tweets</h3>

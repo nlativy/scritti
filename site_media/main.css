@@ -1,13 +1,34 @@
 body {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     text-align: left;
+    background: #eeeeec;
+}
+
+a:link {
+    color: #204a87;
+    text-decoration: none;
+}
+
+a:visited {
+     color: #555753; 
+     text-decoration: none;
+}
+
+a:active {
+    color: #204a87;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 #outer {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    background: #ffffff;
+    /*background: #ffffff;*/
+    background: #eeeeec;
 }
 
 #header {
@@ -26,7 +47,6 @@ body {
     float: right;
     text-align: left;
     width: 30%;
-    /*clear: both;*/
 }
 
 #sidebar .widget {
@@ -45,6 +65,12 @@ body {
     font-size: 0.8em;
 }
 
+.widget ul {
+    font-size: 0.8em;
+    padding-left: 1em;
+    margin-top: 5px;
+}
+
 #footer {
     clear: both;
     margin: 0 auto;
@@ -56,6 +82,7 @@ body {
 
 h1 {
     font-size: 1.5em;
+    color: #2e3436;
 }
 
 h2 {
@@ -65,7 +92,31 @@ h2 {
     padding-bottom: 0px;
 }
 
-h2 a {
+h2 a:link {
+    display: block;
+    font-weight: normal;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    text-decoration: none;
+}
+
+h2 a:hover {
+    display: block;
+    font-weight: normal;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    text-decoration: none;
+}
+
+h2 a:visited {
+    display: block;
+    font-weight: normal;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    text-decoration: none;
+}
+
+h2 a:active {
     display: block;
     font-weight: normal;
     margin-bottom: 0;
