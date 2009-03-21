@@ -11,4 +11,5 @@ def properties(request):
 def tweets(request):
     api = twitter.Api()
     tweets = api.GetUserTimeline(settings.TWITTER_USER)[:settings.NUMBER_OF_TWEETS]
-    return {'tweets': tweets}
+    return {'tweets': tweets,
+            'twitter_url': "http://twitter.com/%s" % settings.TWITTER_USER}

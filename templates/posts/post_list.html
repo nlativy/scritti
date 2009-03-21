@@ -58,8 +58,11 @@
         {% if tweets %}
             <ul>
             {% for tweet in tweets %}
-            <li>'{{tweet.text}}' {{tweet.relative_created_at}}</li>
+            <li>'{{tweet.text}}'
+            <a rel="me" href="{{twitter_url}}/status/{{tweet.id}}">{{tweet.relative_created_at}}</a>
+            </li>
             {% endfor %}
+            <li><a rel="me" title="My twitter updates" href="{{twitter_url}}">more tweets...</a></li>
             </ul>
         {% else %}
         <p>No recent tweets</p>
