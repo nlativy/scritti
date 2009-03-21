@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{{site_name}}</title>
+    <link rel="stylesheet" type="text/css" href="/site_media/main.css" />
+    <link rel="stylesheet" type="text/css" href="/site_media/pygments.css" />
+</head>
+
+<body>
+<div id="outer">
+    <div id="header"><h1>{{site_name}}</h1></div>
+    <div id="main">
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+        <div id="sidebar">
+            {% block widgets %}{% endblock %}
+        </div>
+    </div>
+    <div id="footer">
+        {% block pagination %}{% endblock %}
+        <div class="copyright">
+            Copyright (C) {% now "Y" %} {{site_author}}
+        </div>
+    </div>
+</div>
+</body>
+</html>

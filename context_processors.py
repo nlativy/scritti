@@ -1,5 +1,5 @@
 from django.template import Context
 
-def site_name(request):
+def properties(request):
     from django.conf import settings
-    return {'site_name': settings.SITE_NAME}
+    return {'site_name': settings.SITE_NAME, 'site_author': settings.SITE_AUTHOR}

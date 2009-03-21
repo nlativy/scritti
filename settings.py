@@ -4,6 +4,10 @@ import os
 
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 SITE_NAME = 'In Search of Lost Time'
+SITE_AUTHOR = 'Nicholas Lativy'
+
+# TODO: Should probably be configurable in the web interface
+POSTS_PER_PAGE = 5
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -93,5 +97,5 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
-    'scritti.context_processors.site_name'
+    'scritti.context_processors.properties'
 )

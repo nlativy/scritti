@@ -184,3 +184,7 @@ pre {
 .post .content {
     margin-top: 1.5em;
 }
+
+.pagination {
+    margin-bottom: 15px;
+}
