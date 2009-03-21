@@ -11,9 +11,6 @@ from pygments.formatters import HtmlFormatter
 # a tuple of known lexer names
 _lexer_names = reduce(lambda a,b: a + b[2], LEXERS.itervalues(), ())
 
-# default formatter
-_formatter = HtmlFormatter(cssclass='source')    
-
 class _MyParser(HTMLParser):
     def __init__(self):
         HTMLParser.__init__(self)
@@ -35,13 +32,14 @@ def _replace_html_entities(s):
     mp.close()
     return u''.join(mp.text)  
 
-def markdown_pygment(txt):
+def markdown_pygment(txt, linenos="table"):
     """
     Convert Markdown text to Pygmentized HTML
 
     """
     html = markdown(txt)
     soup = BeautifulSoup(html)
+    formatter = HtmlFormatter(cssclass='source', linenos=linenos)
     dirty = False
     for tag in soup.findAll('pre'):
         if tag.code:
@@ -52,7 +50,7 @@ def markdown_pygment(txt):
                 txt = _replace_html_entities(txt)
                 if lexer_name in _lexer_names:
                     lexer = get_lexer_by_name(lexer_name, stripnl=True, encoding='UTF-8')
-                    tag.replaceWith(highlight(txt, lexer, _formatter))
+                    tag.replaceWith(highlight(txt, lexer, formatter))
                     dirty = True
     if dirty:
         html = unicode(soup)
