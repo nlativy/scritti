@@ -6,7 +6,7 @@ from django.db.models import permalink
 from tagging.fields import TagField
 from tagging.models import Tag
 
-from utils import markdown_with_pygments
+from utils import markdown_pygment
 
 class Post(models.Model):
     title = models.CharField(max_length=128)
@@ -26,7 +26,7 @@ class Post(models.Model):
         if (not self.pub_date):
             self.pub_date = datetime.datetime.now()
 
-        self.body_html = markdown_with_pygments(self.body)
+        self.body_html = markdown_pygment(self.body)
 
     def save(self):
         self.beforeSave()

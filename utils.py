@@ -1,50 +1,60 @@
+from htmlentitydefs import name2codepoint
+from HTMLParser import HTMLParser
+from markdown import markdown
+from BeautifulSoup import BeautifulSoup
+from pygments.lexers import LEXERS, get_lexer_by_name
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
-from pygments.lexers import get_lexer_by_name, guess_lexer
 
-from BeautifulSoup import BeautifulStoneSoup, SoupStrainer
+# code from http://barryp.org/blog/entries/markdown-and-pygments/
 
-from markdown import markdown
+# a tuple of known lexer names
+_lexer_names = reduce(lambda a,b: a + b[2], LEXERS.itervalues(), ())
 
-def markdown_with_pygments(content, safe=False, linenos="table"):
-    """Render this content for display."""
-    # Code based on http://www.djangosnippets.org/snippets/119
+# default formatter
+_formatter = HtmlFormatter(cssclass='source')    
 
-    # First, pull out all the <code></code> blocks, to keep them away
-    # from Markdown (and preserve whitespace).
-    LINES_STRAINER = SoupStrainer("code")
-    soup = BeautifulStoneSoup(str(content), convertEntities=BeautifulStoneSoup.HTML_ENTITIES, parseOnlyThese=LINES_STRAINER)
-    code_blocks = soup.findAll('code')
-    for block in code_blocks:
-        block.replaceWith('<code class="removed"></code>')
+class _MyParser(HTMLParser):
+    def __init__(self):
+        HTMLParser.__init__(self)
+        self.text = []
+    def handle_data(self, data):
+        self.text.append(data)
+    def handle_entityref(self, name):
+        self.text.append(unichr(name2codepoint[name]))
 
-    # Run the post through markdown.
-    markeddown = markdown(str(soup), safe_mode=safe)
+def _replace_html_entities(s):
+    """
+    Replace HTML entities in a string
+    with their unicode equivalents.  For
+    example, '&amp;' is replaced with just '&'
 
-    LINES_STRAINER = SoupStrainer("code")
+    """
+    mp = _MyParser()
+    mp.feed(s)
+    mp.close()
+    return u''.join(mp.text)  
 
-    # Replace the pulled code blocks with syntax-highlighted versions.
-    soup = BeautifulStoneSoup(markeddown, convertEntities=BeautifulStoneSoup.HTML_ENTITIES, parseOnlyThese=LINES_STRAINER)
-    empty_code_blocks, index = soup.findAll('code', 'removed'), 0
-    formatter = HtmlFormatter(cssclass='source', linenos=linenos)
-    for block in code_blocks:
-        if block.has_key('class'):
-            # <code class='python'>python code</code>
-            language = block['class']
-        else:
-            # <code>plain text, whitespace-preserved</code>
-            language = 'text'
-        try:
-            lexer = get_lexer_by_name(language, stripnl=True, encoding='UTF-8')
-        except ValueError, e:
-            try:
-                # Guess a lexer by the contents of the block.
-                lexer = guess_lexer(block.renderContents())
-            except ValueError, e:
-                # Just make it plain text.
-                lexer = get_lexer_by_name('text', stripnl=True, encoding='UTF-8')
-        empty_code_blocks[index].replaceWith(
-                highlight(block.renderContents(), lexer, formatter))
-        index = index + 1
+def markdown_pygment(txt):
+    """
+    Convert Markdown text to Pygmentized HTML
 
-    return str(soup)
+    """
+    html = markdown(txt)
+    soup = BeautifulSoup(html)
+    dirty = False
+    for tag in soup.findAll('pre'):
+        if tag.code:
+            txt = tag.code.renderContents()
+            if txt.startswith('pygments:'):
+                lexer_name, txt = txt.split('\n', 1)
+                lexer_name = lexer_name.split(':')[1]
+                txt = _replace_html_entities(txt)
+                if lexer_name in _lexer_names:
+                    lexer = get_lexer_by_name(lexer_name, stripnl=True, encoding='UTF-8')
+                    tag.replaceWith(highlight(txt, lexer, _formatter))
+                    dirty = True
+    if dirty:
+        html = unicode(soup)
+
+    return html
