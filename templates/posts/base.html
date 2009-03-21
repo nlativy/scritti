@@ -13,13 +13,14 @@
     <div id="main">
         <div id="content">
             {% block content %}{% endblock %}
+
+            {% block pagination %}{% endblock %}
         </div>
         <div id="sidebar">
             {% block widgets %}{% endblock %}
         </div>
     </div>
     <div id="footer">
-        {% block pagination %}{% endblock %}
         <div class="copyright">
             Copyright (C) {% now "Y" %} {{site_author}}
         </div>
