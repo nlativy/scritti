@@ -5,6 +5,7 @@ import os
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 SITE_NAME = 'In Search of Lost Time'
 SITE_AUTHOR = 'Nicholas Lativy'
+SITE_URL = '/'
 
 # TODO: Should probably be configurable in the web interface
 POSTS_PER_PAGE = 5

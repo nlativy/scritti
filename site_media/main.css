@@ -85,6 +85,11 @@ h1 {
     color: #2e3436;
 }
 
+h1 a:link, h1 a:visited, h1 a:active , h1 a:hover {
+    color: #2e3436;
+    text-decoration: none;
+}
+
 h2 {
     font-size: 1.2em;
     border-bottom: 1px solid #999999;
@@ -92,31 +97,7 @@ h2 {
     padding-bottom: 0px;
 }
 
-h2 a:link {
-    display: block;
-    font-weight: normal;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    text-decoration: none;
-}
-
-h2 a:hover {
-    display: block;
-    font-weight: normal;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    text-decoration: none;
-}
-
-h2 a:visited {
-    display: block;
-    font-weight: normal;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    text-decoration: none;
-}
-
-h2 a:active {
+h2 a:link, h2 a:hover, h2 a:active, h2 a:visited {
     display: block;
     font-weight: normal;
     margin-bottom: 0;
