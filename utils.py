@@ -2,7 +2,7 @@ from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import get_lexer_by_name, guess_lexer
 
-from BeautifulSoup import BeautifulSoup
+from BeautifulSoup import BeautifulStoneSoup, SoupStrainer
 
 from markdown import markdown
 
@@ -12,7 +12,8 @@ def markdown_with_pygments(content, safe=False, linenos="table"):
 
     # First, pull out all the <code></code> blocks, to keep them away
     # from Markdown (and preserve whitespace).
-    soup = BeautifulSoup(str(content))
+    LINES_STRAINER = SoupStrainer("code")
+    soup = BeautifulStoneSoup(str(content), convertEntities=BeautifulStoneSoup.HTML_ENTITIES, parseOnlyThese=LINES_STRAINER)
     code_blocks = soup.findAll('code')
     for block in code_blocks:
         block.replaceWith('<code class="removed"></code>')
@@ -20,8 +21,10 @@ def markdown_with_pygments(content, safe=False, linenos="table"):
     # Run the post through markdown.
     markeddown = markdown(str(soup), safe_mode=safe)
 
+    LINES_STRAINER = SoupStrainer("code")
+
     # Replace the pulled code blocks with syntax-highlighted versions.
-    soup = BeautifulSoup(markeddown)
+    soup = BeautifulStoneSoup(markeddown, convertEntities=BeautifulStoneSoup.HTML_ENTITIES, parseOnlyThese=LINES_STRAINER)
     empty_code_blocks, index = soup.findAll('code', 'removed'), 0
     formatter = HtmlFormatter(cssclass='source', linenos=linenos)
     for block in code_blocks:

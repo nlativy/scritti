@@ -3,7 +3,7 @@ from django.contrib import admin
 
 class PostAdmin(admin.ModelAdmin):
     fieldsets = [
-            ('Post',                {'fields': ['title', 'body']}),
+            ('Post',                {'fields': ['title', 'body', 'tags']}),
             #('Date information',    {'fields': ['pub_date'], 'classes': ['collapse']}),
             ('Slug',                {'fields': ['slug']}),
         ]

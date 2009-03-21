@@ -17,7 +17,10 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
     (r'^$', 'scritti.posts.views.index'),
+    url(r'^page/(?P<page>\d+)$', 'scritti.posts.views.index', name='index_page'),
     url(r'^articles/(?P<post_slug>.*)/$', 'scritti.posts.views.detail', name='post_view'),
+    url(r'^tag/(?P<tag_name>.*)/$', 'scritti.posts.views.tagged', name="tag_view"),
+    url(r'^tag/(?P<tag_name>.*)/(?P<page>\d+)$', 'scritti.posts.views.tagged', name="tag_page"),
 )
 
 if settings.DEBUG:

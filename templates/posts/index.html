@@ -12,19 +12,27 @@
     <div id="header"><h1>{{site_name}}</h1></div>
     <div id="main">
         <div id="content">
-            {% if latest_posts %}
-                {% for post in latest_posts %}
+            {% if posts.object_list %}
+                {% for post in posts.object_list %}
                     <div class="post">
                         <h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
                         <div class="info">
-                            <span class="date">Published: {{post.pub_date}}</span>
+                            <span class="date">Published: {{post.pub_date|date:"j F Y \a\t H:i T"}}</span>
                             <span class="details"><a href="{{post.get_absolute_url}}">Comments</a></span>
                         </div>
                         <div class="content">
                         {{post.body_html|safe}}
                         </div>
                         <div class="meta">
-                        Filed under Foo. Tagged: programming, foo, bar.
+                        {% if post.get_tags %}
+                        Tagged: 
+                        {% for tag in post.get_tags %}
+                            <!-- TODO: do not have tag URL hardcoded here -->
+                            <a href="/tag/{{tag.name}}">{{tag.name}}</a>{% if not forloop.last %}, {%endif%}
+                        {%endfor%}
+                        {% else %}
+                        Not tagged.
+                        {% endif %}
                         </div>
                     </div>
                 {% endfor %}
@@ -35,9 +43,9 @@
         <div id="sidebar">
             <div class="widget">
                 <h3>Recent posts</h3>
-                {% if latest_posts %}
+                {% if posts.object_list %}
                     <ul>
-                    {% for post in latest_posts %}
+                    {% for post in posts.object_list %}
                         <li><a href="{{post.get_absolute_url}}">{{post.title}}</a></li>
                     {% endfor %}
                     </ul>
@@ -61,7 +69,19 @@
             </div>
         </div>
     </div>
-    <div id="footer">Copyright (C) 2009 Nicholas Lativy</div>
+    <div id="footer">
+        <div class="pagination">
+        {% if posts.has_previous %}
+        <a href="{% url index_page posts.previous_page_number %}">newer entries</a>
+        {% endif %}
+        {% if posts.has_next %}
+        <a href="{% url index_page posts.next_page_number %}">older entries</a>
+        {% endif %}
+        </div>
+        <div class="copyright">
+            Copyright (C) 2009 Nicholas Lativy
+        </div>
+    </div>
 </div>
 </body>
 </html>

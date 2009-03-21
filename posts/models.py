@@ -3,6 +3,9 @@ import datetime
 from django.db import models
 from django.db.models import permalink
 
+from tagging.fields import TagField
+from tagging.models import Tag
+
 from utils import markdown_with_pygments
 
 class Post(models.Model):
@@ -11,6 +14,13 @@ class Post(models.Model):
     body = models.TextField()
     body_html = models.TextField(editable=False, blank=True)
     pub_date = models.DateTimeField('publication date')
+    tags = TagField()
+
+    def set_tags(self, tags):
+        Tag.objects.update_tags(self, tags)
+
+    def get_tags(self):
+        return Tag.objects.get_for_object(self)
 
     def beforeSave(self):
         if (not self.pub_date):
@@ -28,4 +38,3 @@ class Post(models.Model):
     def get_absolute_url(self):
         return ('post_view', [str(self.slug)])
     get_absolute_url = permalink(get_absolute_url)
-
