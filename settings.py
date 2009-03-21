@@ -7,6 +7,9 @@ SITE_NAME = 'In Search of Lost Time'
 SITE_AUTHOR = 'Nicholas Lativy'
 SITE_URL = '/'
 
+TWITTER_USER = 'nlativy'
+NUMBER_OF_TWEETS = 3
+
 # TODO: Should probably be configurable in the web interface
 POSTS_PER_PAGE = 5
 
@@ -100,6 +103,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'scritti.context_processors.properties',
+    'scritti.context_processors.tweets',
     'scritti.posts.context_processors.recent_posts',
     'scritti.links.context_processors.links',
 )

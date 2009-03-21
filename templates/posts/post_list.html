@@ -55,7 +55,15 @@
     {% endif %}
     <div class="widget">
         <h3>Recent tweets</h3>
-        <p>Twitter activity goes here</p>
+        {% if tweets %}
+            <ul>
+            {% for tweet in tweets %}
+            <li>'{{tweet.text}}' {{tweet.relative_created_at}}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+        <p>No recent tweets</p>
+        {% endif %}
     </div>
 {% endblock %}
 
