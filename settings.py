@@ -91,6 +91,7 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'tagging',
     'scritti.posts',
+    'scritti.links',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -100,4 +101,5 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'scritti.context_processors.properties',
     'scritti.posts.context_processors.recent_posts',
+    'scritti.links.context_processors.links',
 )

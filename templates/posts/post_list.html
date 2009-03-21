@@ -43,16 +43,16 @@
             <p>No posts</p>
         {% endif %}
     </div>
+    {% if external_links %}
     <div class="widget">
         <h3>Links</h3>
         <ul>
-        <li><a href="fake">My photos</a></li>
-        <li><a href="fake">My Facebook</a></li>
-        <li><a href="fake">My Last.fm</a></li>
-        <li><a href="fake">My Wishlist</a></li>
-        <li><a href="fake">Source code</a></li>
+        {% for link in external_links %}
+        <li><a title="{{link.title}}" rel="{{link.rel}}" href="{{link.url}}">{{link.name}}</a></li>
+        {% endfor %}
         </ul>
     </div>
+    {% endif %}
     <div class="widget">
         <h3>Recent tweets</h3>
         <p>Twitter activity goes here</p>
