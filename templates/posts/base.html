@@ -12,6 +12,8 @@
     <div id="header"><h1><a href="{{site_url}}">{{site_name}}</a></h1></div>
     <div id="main">
         <div id="content">
+            {% block content-heading %} {% endblock %}
+
             {% block content %}{% endblock %}
 
             {% block pagination %}{% endblock %}

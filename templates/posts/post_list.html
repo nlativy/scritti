@@ -33,7 +33,7 @@
 {% block widgets %}
     <div class="widget">
         <h3>Recent posts</h3>
-        {% if posts.object_list %}
+        {% if recent_posts %}
             <ul>
             {% for post in recent_posts %}
                 <li><a href="{{post.get_absolute_url}}">{{post.title}}</a></li>

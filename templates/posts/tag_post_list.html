@@ -1,5 +1,12 @@
 {% extends "posts/post_list.html" %}
 
+{% block content-heading %}
+<div class="content-heading">
+    <p>Posts tagged <em>{{tag}}</em></p>
+</div>
+
+{% endblock %}
+
 {% block pagination %}
     {% if posts.has_other_pages %}
     <div class="pagination">
