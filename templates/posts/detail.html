@@ -1,13 +1,22 @@
 {% extends "posts/post_list.html" %}
 
 {% block content %}
+    {% if preview %}
+    <div class="content-heading">
+        <p>This is a preview of an unpublished post.</p>
+    </div>
+    {% endif %}
     <!-- We are duplicating the post template here, must fix -->
     <div class="post">
         <h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
         <div class="info">
             <span class="date">
+                {% if post.pub_date %}
                 Published on {{post.pub_date|date:"j F Y \a\t H:i T"}}
                 by {{post.author.first_name}} {{post.author.last_name}}
+                {% else %}
+                Unpublished
+                {% endif %}
             </span>
             <span class="details"><a href="{{post.get_absolute_url}}">Comments</a></span>
         </div>

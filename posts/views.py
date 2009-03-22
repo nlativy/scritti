@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
+from django.contrib.admin.views.decorators import staff_member_required
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.views.generic.list_detail import object_list
 from django.conf import settings
@@ -20,9 +21,17 @@ def index(request, page=1):
 
     return render_to_response('posts/post_list.html', {'posts': posts}, RequestContext(request))
 
+def render_post(request, post, preview=False):
+    return render_to_response('posts/detail.html', {'post': post, 'preview': preview}, RequestContext(request))
+
+@staff_member_required
+def preview(request, post_slug):
+    post = get_object_or_404(Post, slug=post_slug, published=False)
+    return render_post(request, post, preview=True)
+
 def detail(request, post_slug):
     post = get_object_or_404(Post, slug=post_slug, published=True)
-    return render_to_response('posts/detail.html', {'post': post}, RequestContext(request))
+    return render_post(request, post)
 
 def search(request, page=1):
     query_text = request.GET.get('q', None)
