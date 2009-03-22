@@ -1,6 +1,12 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
+from django.contrib.syndication.feeds import Feed
+from scritti.posts.feeds import RssPostFeed
 import os
+
+feeds = {
+    'articles': RssPostFeed,
+}
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -17,6 +23,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
     (r'^$', 'scritti.posts.views.index'),
+    (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
     url(r'^page/(?P<page>\d+)$', 'scritti.posts.views.index', name='index_page'),
     url(r'^search/$', 'scritti.posts.views.search', name='search_view'),
     url(r'^articles/(?P<post_slug>.*)/$', 'scritti.posts.views.detail', name='post_view'),
