@@ -1,0 +1,37 @@
+<div class="widget">
+    <h3>Recent posts</h3>
+    {% if recent_posts %}
+        <ul>
+        {% for post in recent_posts %}
+            <li><a href="{{post.get_absolute_url}}">{{post.title}}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No posts</p>
+    {% endif %}
+</div>
+{% if external_links %}
+<div class="widget">
+    <h3>Links</h3>
+    <ul>
+    {% for link in external_links %}
+    <li><a title="{{link.title}}" rel="{{link.rel}}" href="{{link.url}}">{{link.name}}</a></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+<div class="widget">
+    <h3>Recent tweets</h3>
+    {% if tweets %}
+        <ul>
+        {% for tweet in tweets %}
+        <li>'{{tweet.text}}'
+        <a rel="me" href="{{twitter_url}}/status/{{tweet.id}}">{{tweet.relative_created_at}}</a>
+        </li>
+        {% endfor %}
+        <li><a rel="me" title="My twitter updates" href="{{twitter_url}}">more tweets...</a></li>
+        </ul>
+    {% else %}
+    <p>No recent tweets</p>
+    {% endif %}
+</div>

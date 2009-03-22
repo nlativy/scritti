@@ -10,14 +10,7 @@
 <body>
 <div id="outer">
     <div id="header">
-        <div class="title">
-        <h1><a href="{{site_url}}">{{site_name}}</a></h1>
-        </div>
-        <div class="search-form">
-            <form action="{{site_url}}/search" method="get">
-                <input type="text" name="q" /> <input type="submit" value="search" />
-            </form>
-        </div>
+        {% include "posts/heading.html" %}
     </div>
     <div id="main">
         <div id="content">
@@ -28,7 +21,7 @@
             {% block pagination %}{% endblock %}
         </div>
         <div id="sidebar">
-            {% block widgets %}{% endblock %}
+            {% include "posts/widgets.html" %}
         </div>
     </div>
     <div id="footer">

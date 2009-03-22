@@ -3,74 +3,11 @@
 {% block content %}
     {% if posts.object_list %}
         {% for post in posts.object_list %}
-            <div class="post">
-                <h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
-                <div class="info">
-                    <span class="date">
-                        Published on {{post.pub_date|date:"j F Y \a\t H:i T"}}
-                        by {{post.author.first_name}} {{post.author.last_name}}
-                    </span>
-                    <span class="details"><a href="{{post.get_absolute_url}}">Comments</a></span>
-                </div>
-                <div class="content">
-                {{post.body_html|safe}}
-                </div>
-                <div class="meta">
-                {% if post.get_tags %}
-                Tagged: 
-                {% for tag in post.get_tags %}
-                    <!-- TODO: do not have tag URL hardcoded here -->
-                    <a href="/tag/{{tag.name}}">{{tag.name}}</a>{% if not forloop.last %}, {%endif%}
-                {%endfor%}
-                {% else %}
-                Not tagged.
-                {% endif %}
-                </div>
-            </div>
+            {% include "posts/post.html" %}
         {% endfor %}
     {% else %}
         <p>No posts</p>
     {% endif %}
-{% endblock %}
-
-{% block widgets %}
-    <div class="widget">
-        <h3>Recent posts</h3>
-        {% if recent_posts %}
-            <ul>
-            {% for post in recent_posts %}
-                <li><a href="{{post.get_absolute_url}}">{{post.title}}</a></li>
-            {% endfor %}
-            </ul>
-        {% else %}
-            <p>No posts</p>
-        {% endif %}
-    </div>
-    {% if external_links %}
-    <div class="widget">
-        <h3>Links</h3>
-        <ul>
-        {% for link in external_links %}
-        <li><a title="{{link.title}}" rel="{{link.rel}}" href="{{link.url}}">{{link.name}}</a></li>
-        {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
-    <div class="widget">
-        <h3>Recent tweets</h3>
-        {% if tweets %}
-            <ul>
-            {% for tweet in tweets %}
-            <li>'{{tweet.text}}'
-            <a rel="me" href="{{twitter_url}}/status/{{tweet.id}}">{{tweet.relative_created_at}}</a>
-            </li>
-            {% endfor %}
-            <li><a rel="me" title="My twitter updates" href="{{twitter_url}}">more tweets...</a></li>
-            </ul>
-        {% else %}
-        <p>No recent tweets</p>
-        {% endif %}
-    </div>
 {% endblock %}
 
 {% block pagination %}
