@@ -3,9 +3,10 @@ from django.contrib import admin
 
 class PostAdmin(admin.ModelAdmin):
     fieldsets = [
-            ('Post',                {'fields': ['title', 'body', 'tags']}),
+            ('Post',                {'fields': ['title', 'body']}),
             #('Date information',    {'fields': ['pub_date'], 'classes': ['collapse']}),
-            ('Slug',                {'fields': ['slug']}),
+            ('Meta',                {'fields': ['slug', 'tags', 'author']}),
+            ('Publish',             {'fields': ['published']}),
         ]
     list_display = ('title', 'pub_date')
     prepopulated_fields = {'slug': ('title',)}

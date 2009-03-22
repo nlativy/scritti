@@ -1,0 +1,25 @@
+{% extends "posts/post_list.html" %}
+
+{% block content-heading %}
+<div class="content-heading">
+    <p>Results for search: <em>{{query}}</em></p>
+</div>
+
+{% endblock %}
+
+{% block pagination %}
+    {% if posts.has_other_pages %}
+    <div class="pagination">
+    {% if posts.has_previous %}
+    <span class="prev">
+    <a href="{% url tag_page tag posts.previous_page_number %}">&lt; newer entries</a>
+    </span>
+    {% endif %}
+    {% if posts.has_next %}
+    <span class="next">
+    <a href="{% url tag_page tag posts.next_page_number %}">older entries &gt;</a>
+    </span>
+    {% endif %}
+    </div>
+    {% endif %}
+{% endblock %}
