@@ -24,7 +24,8 @@ def detail(request, post_slug):
     post = get_object_or_404(Post, slug=post_slug, published=True)
     return render_to_response('posts/detail.html', {'post': post}, RequestContext(request))
 
-def search(request, query_text, page=1):
+def search(request, page=1):
+    query_text = request.GET.get('q', None)
     post_list = Post.objects.query(query_text).filter(published=True)
     paginator = Paginator(post_list, settings.POSTS_PER_PAGE)
 

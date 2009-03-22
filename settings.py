@@ -5,7 +5,7 @@ import os
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 SITE_NAME = 'In Search of Lost Time'
 SITE_AUTHOR = 'Nicholas Lativy'
-SITE_URL = '/'
+SITE_URL = 'http://localhost:8000'
 
 TWITTER_USER = 'nlativy'
 NUMBER_OF_TWEETS = 3
