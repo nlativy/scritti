@@ -196,3 +196,42 @@ pre {
     margin-bottom: 15px;
 }
 
+.comments h3 {
+    color: #2e3436;
+    font-size: 1.0em;
+    border: none;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 5px;
+    padding-bottom: 0px;
+}
+
+.comment {
+    border: 1px solid #babdb6;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.comment .head p {
+    margin: 0px;
+    border-bottom: 1px solid #babdb6;
+    background: #d3d7cf;
+}
+
+.comment .body {
+    padding: 5px;
+}
+
+.comments label {
+    color: #2e3436;
+}
+
+.comments #id_url, .comments #id_email, .comments #id_name {
+    display: block;
+    width: 50%;
+}
+
+.comments textarea {
+    width: 80%;
+    display: block;
+}

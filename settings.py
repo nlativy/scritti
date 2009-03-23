@@ -95,6 +95,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.markup',
     'django.contrib.sitemaps',
+    'django.contrib.comments',
     'tagging',
     'scritti.posts',
     'scritti.links',

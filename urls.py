@@ -3,6 +3,8 @@ from django.conf import settings
 from django.contrib.syndication.feeds import Feed
 from scritti.posts.feeds import RssPostFeed, AtomPostFeed
 from scritti.posts.sitemap import PostSitemap
+from django.contrib.comments.models import Comment
+
 import os
 
 feeds = {
@@ -32,6 +34,7 @@ urlpatterns = patterns('',
     (r'^admin/(.*)', admin.site.root),
     (r'^$', 'scritti.posts.views.index'),
     (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
+    (r'^comments/', include('django.contrib.comments.urls')),
     (r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     url(r'^page/(?P<page>\d+)$', 'scritti.posts.views.index', name='index_page'),
     url(r'^search/$', 'scritti.posts.views.search', name='search_view'),
