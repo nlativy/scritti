@@ -1,11 +1,14 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
 from django.contrib.syndication.feeds import Feed
-from scritti.posts.feeds import RssPostFeed
+from scritti.posts.feeds import RssPostFeed, AtomPostFeed
 import os
 
 feeds = {
     'articles': RssPostFeed,
+
+    # Enable to offer feed in Atom format
+    #'articles-atom': AtomPostFeed,
 }
 
 # Uncomment the next two lines to enable the admin:

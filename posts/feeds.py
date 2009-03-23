@@ -1,5 +1,6 @@
 from scritti.posts.models import Post
 from django.contrib.syndication.feeds import Feed, FeedDoesNotExist
+from django.utils.feedgenerator import Atom1Feed
 from django.conf import settings
 
 class RssPostFeed(Feed):
@@ -18,3 +19,7 @@ class RssPostFeed(Feed):
 
     def item_categories(self, item):
         return item.tags.split(" ")
+
+class AtomPostFeed(RssPostFeed):
+    feed_type = Atom1Feed
+    subtitle = RssPostFeed.description
