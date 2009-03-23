@@ -1,3 +1,7 @@
+{% load comments %}
+
+{% get_comment_count for posts.post post.id as comment_count %}
+
 <div class="post">
     <h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
     <div class="info">
@@ -9,7 +13,13 @@
             Unpublished
             {% endif %}
         </span>
-        <span class="details"><a href="{{post.get_absolute_url}}">Comments</a></span>
+        <span class="details"><a href="{{post.get_absolute_url}}">
+            {% if comment_count %}
+                {{comment_count}} Comment{{comment_count|pluralize}}
+            {% else %}
+                No Comments
+            {% endif %}
+        </a></span>
     </div>
     <div class="content">
     {{post.body_html|safe}}
