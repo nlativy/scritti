@@ -215,11 +215,12 @@ pre {
 .comment .head p {
     margin: 0px;
     border-bottom: 1px solid #babdb6;
+    padding: 2px;
     background: #d3d7cf;
 }
 
 .comment .body {
-    padding: 5px;
+    padding: 5px
 }
 
 .comments label {

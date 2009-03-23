@@ -13,13 +13,17 @@
             Unpublished
             {% endif %}
         </span>
-        <span class="details"><a href="{{post.get_absolute_url}}">
+        <span class="details">
             {% if comment_count %}
+                <a href="{{post.get_absolute_url}}#comments">
                 {{comment_count}} Comment{{comment_count|pluralize}}
+                </a>
             {% else %}
-                No Comments
+                <a href="{{post.get_absolute_url}}#respond">
+                Discuss
+                </a>
             {% endif %}
-        </a></span>
+        </span>
     </div>
     <div class="content">
     {{post.body_html|safe}}

@@ -8,7 +8,7 @@ class PostAdmin(admin.ModelAdmin):
             ('Meta',                {'fields': ['slug', 'tags', 'author']}),
             ('Publish',             {'fields': ['published']}),
         ]
-    list_display = ('title', 'pub_date')
+    list_display = ('title', 'pub_date', 'published', 'tags')
     prepopulated_fields = {'slug': ('title',)}
 
 admin.site.register(Post, PostAdmin)
