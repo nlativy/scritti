@@ -32,5 +32,7 @@
 {% endif %}
 
 <h3 id="respond">Post a comment</h3>
+{% include "comments/comment_help.html" %}
+
 {% render_comment_form for posts.post post.id %}
 </div>

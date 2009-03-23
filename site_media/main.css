@@ -95,7 +95,9 @@ h1 a:link, h1 a:visited, h1 a:active , h1 a:hover {
 
 h2 {
     font-size: 1.2em;
+    font-weight: normal;
     border-bottom: 1px solid #999999;
+    color: #2e3436;
     margin-bottom: 0.2px;
     padding-bottom: 0px;
 }
