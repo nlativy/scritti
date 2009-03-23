@@ -1,0 +1,43 @@
+{% extends "posts/base.html" %}
+
+{% block title %} / Preview Comment{% endblock %}
+
+{% block content %}
+  {% load comments %}
+  <form action="{% comment_form_target %}" method="POST">
+    <h2>Preview Comment</h2>
+<div class="comments">
+    {% if form.errors %}
+      <p>Please correct the error{{ form.errors|pluralize }} below...</p>
+    {% else %}
+      <p>This is what your comment will look like:</p>
+      <div class="comment">
+      <div class="body">
+      {{ comment|escape|linebreaks }}
+      </div>
+      </div>
+      <p>
+      You may now 
+      <input type="submit" name="submit" value="Post your comment" id="submit">
+      or use the form below to make changes.
+      </p>
+    {% endif %}
+    {% for field in form %}
+      {% if field.is_hidden %}
+        {{ field }}
+      {% else %}
+        <p
+          {% if field.errors %} class="error"{% endif %}
+          {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
+          {% if field.errors %}{{ field.errors }}{% endif %}
+          {{ field.label_tag }} {{ field }}
+        </p>
+      {% endif %}
+    {% endfor %}
+    <p class="submit">
+      <input type="submit" name="submit" class="submit-post" value="Post">
+      <input type="submit" name="submit" class="submit-preview" value="Preview">
+    </p>
+  </form>
+</div>
+{% endblock %}

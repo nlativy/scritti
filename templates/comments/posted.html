@@ -1,0 +1,11 @@
+{% extends "posts/base.html" %}
+
+{% block title %} - Comment submitted{% endblock %}
+
+{% block content %}
+  <h2>Comment submitted</h2>
+  <p>Thank you for your comment. You may now
+  {% if comment %}
+  <a href="{{ comment.get_absolute_url }}">view your comment</a>.
+  {% endif %}
+{% endblock %}
