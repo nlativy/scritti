@@ -42,7 +42,7 @@ TIME_ZONE = 'Europe/London'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-gb'
 
-SITE_ID = 2
+SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -99,7 +99,11 @@ INSTALLED_APPS = (
     'tagging',
     'scritti.posts',
     'scritti.links',
+    'scritti.markdown_code',
+    'scritti.markdown_comments',
 )
+
+COMMENTS_APP = 'scritti.markdown_comments'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.auth',

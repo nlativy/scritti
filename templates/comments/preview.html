@@ -4,6 +4,7 @@
 
 {% block content %}
   {% load comments %}
+  {% load markdown_code %}
   <form action="{% comment_form_target %}" method="POST">
     <h2>Preview Comment</h2>
 <div class="comments">
@@ -13,7 +14,7 @@
       <p>This is what your comment will look like:</p>
       <div class="comment">
       <div class="body">
-      {{ comment|escape|linebreaks }}
+      {{ comment|striptags|markdown_code|safe }}
       </div>
       </div>
       <p>

@@ -1,4 +1,5 @@
 {% load comments %}
+{% load markdown_code %}
 
 {% get_comment_count for posts.post post.id as comment_count %}
 {% get_comment_list for posts.post post.id as comment_list %}
@@ -21,7 +22,8 @@
         commented, on {{ comment.submit_date|date:"j F Y \a\t H:i T" }}:</p>
         </div>
         <div class="body">
-        {{ comment.comment|escape|urlizetrunc:40|linebreaks }}
+            <!-- {{ comment.comment|striptags|markdown_code|safe }} -->
+            {{ comment.comment_html|safe }}
         </div>
     </div>
     {% endfor %}
