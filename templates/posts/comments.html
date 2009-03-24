@@ -6,7 +6,6 @@
 
 <div class="comments">
 <h3 id="comments">Comments</h3>
-{% if post.allow_comments %}
 {% if comment_list %}
     {% for comment in comment_list %}
     <div class="comment" id="c{{ comment.id }}">
@@ -33,10 +32,11 @@
 {% endif %}
 
 <h3 id="respond">Post a comment</h3>
+{% if post.allow_comments %}
 {% include "comments/comment_help.html" %}
 
 {% render_comment_form for posts.post post.id %}
 {% else %}
-<p> Comments are disabled for this post.</p>
+<p>Comments are currently disabled for this post.</p>
 {% endif %}
 </div>

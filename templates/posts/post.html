@@ -19,16 +19,16 @@
             {% endif %}
         </span>
         <span class="details">
-            {% if post.allow_comments %}
             {% if comment_count %}
                 <a href="{{post.get_absolute_url}}#comments">
                 {{comment_count}} Comment{{comment_count|pluralize}}
                 </a>
             {% else %}
+                {% if post.allow_comments %}
                 <a href="{{post.get_absolute_url}}#respond">
                 Discuss
                 </a>
-            {% endif %}
+                {% endif %}
             {% endif %}
         </span>
     </div>

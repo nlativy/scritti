@@ -37,7 +37,7 @@ def markdown_pygment(txt, linenos="table"):
     Convert Markdown text to Pygmentized HTML
 
     """
-    html = markdown(txt)
+    html = markdown(txt, safe_mode='replace')
     soup = BeautifulSoup(html)
     formatter = HtmlFormatter(cssclass='source', linenos=linenos)
     dirty = False
