@@ -36,9 +36,15 @@ urlpatterns = patterns('',
     (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
     (r'^comments/', include('django.contrib.comments.urls')),
     (r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+
+
     url(r'^page/(?P<page>\d+)$', 'scritti.posts.views.index', name='index_page'),
     url(r'^search/$', 'scritti.posts.views.search', name='search_view'),
     url(r'^articles/(?P<post_slug>.*)/$', 'scritti.posts.views.detail', name='post_view'),
+
+    # For compatability with my old wordpress URLs 
+    url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<post_slug>.*)/$', 'scritti.posts.views.detail_date', name='legacy_post_view'),
+
     url(r'^preview/(?P<post_slug>.*)/$', 'scritti.posts.views.preview', name='preview_view'),
     url(r'^tag/(?P<tag_name>.*)/$', 'scritti.posts.views.tagged', name="tag_view"),
     url(r'^tag/(?P<tag_name>.*)/(?P<page>\d+)$', 'scritti.posts.views.tagged', name="tag_page"),

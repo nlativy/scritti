@@ -1,4 +1,16 @@
 <div class="widget">
+    <h3>Pages</h3>
+    {% if pages %}
+        <ul>
+        {% for page in pages %}
+            <li><a href="{{page.get_absolute_url}}">{{page.title}}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No pages</p>
+    {% endif %}
+</div>
+<div class="widget">
     <h3>Recent posts</h3>
     {% if recent_posts %}
         <ul>
@@ -10,16 +22,18 @@
         <p>No posts</p>
     {% endif %}
 </div>
-{% if external_links %}
 <div class="widget">
     <h3>Links</h3>
+    {% if external_links %}
     <ul>
     {% for link in external_links %}
     <li><a title="{{link.title}}" rel="{{link.rel}}" href="{{link.url}}">{{link.name}}</a></li>
     {% endfor %}
     </ul>
+    {% else %}
+        <p>No links</p>
+    {% endif %}
 </div>
-{% endif %}
 <div class="widget">
     <h3>Recent tweets</h3>
     {% if tweets %}

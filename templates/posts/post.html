@@ -8,12 +8,18 @@
         <span class="date">
             {% if post.pub_date %}
             Published on {{post.pub_date|date:"j F Y \a\t H:i T"}}
-            by {{post.author.first_name}} {{post.author.last_name}}
+            by 
+            {% if post.author.first_name %}
+                {{post.author.first_name}} {{post.author.last_name}}
+            {% else %}
+                {{post.author.username}}
+            {% endif %}
             {% else %}
             Unpublished
             {% endif %}
         </span>
         <span class="details">
+            {% if post.allow_comments %}
             {% if comment_count %}
                 <a href="{{post.get_absolute_url}}#comments">
                 {{comment_count}} Comment{{comment_count|pluralize}}
@@ -22,6 +28,7 @@
                 <a href="{{post.get_absolute_url}}#respond">
                 Discuss
                 </a>
+            {% endif %}
             {% endif %}
         </span>
     </div>

@@ -6,9 +6,13 @@ class PostAdmin(admin.ModelAdmin):
             ('Post',                {'fields': ['title', 'body']}),
             #('Date information',    {'fields': ['pub_date'], 'classes': ['collapse']}),
             ('Meta',                {'fields': ['slug', 'tags', 'author']}),
-            ('Publish',             {'fields': ['published']}),
+            ('Publication',         {'fields': ['published', 'allow_comments', 'is_page']}),
         ]
-    list_display = ('title', 'pub_date', 'published', 'tags')
+    list_display = ('title', 'pub_date', 'published', 'allow_comments', 'is_page', 'tags')
+    list_filter = ('published', 'is_page', 'pub_date')
     prepopulated_fields = {'slug': ('title',)}
+    search_fields = ('title', 'body', 'tags')
+    ordering = ('-pub_date',)
+    date_hierarchy = 'pub_date'
 
 admin.site.register(Post, PostAdmin)

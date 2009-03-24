@@ -113,5 +113,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'scritti.context_processors.properties',
     'scritti.context_processors.tweets',
     'scritti.posts.context_processors.recent_posts',
+    'scritti.posts.context_processors.pages',
     'scritti.links.context_processors.links',
 )
