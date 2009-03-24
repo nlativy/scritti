@@ -243,3 +243,39 @@ pre {
     color: #cc0000;
     font-size: 0.8em;
 }
+
+/* Tag cloud */
+.tag-cloud {
+}
+
+.tag-1 {
+    font-size: 0.7em 
+}
+
+.tag-2 {
+    font-size: 0.8em;
+}
+
+.tag-3 {
+    font-size: 0.9em;
+}
+
+.tag-4 {
+    font-size: 1em;
+}
+
+.tag-5 {
+    font-size: 1.1em;
+}
+
+.tag-6 {
+    font-size: 1.2em;
+}
+
+.tag-7 {
+    font-size: 1.3em;
+}
+
+.tag-8 {
+    font-size: 1.4em;
+}

@@ -35,6 +35,20 @@
     {% endif %}
 </div>
 <div class="widget">
+    <h3>Tag cloud</h3>
+    {% load tagging_tags %}
+    {% tag_cloud_for_model posts.Post as tags with steps=6 min_count=1 distribution=log %}
+    {% if tags %}
+    <div class="tag-cloud">
+    {% for tag in tags %}
+    <span class="tag-{{tag.font_size}}"><a href="{% url tag_view tag.name %}">{{tag.name}}</a></span>
+    {% endfor %}
+    </div>
+    {% else %}
+    <p>No tags</p>
+    {% endif %}
+</div>
+<div class="widget">
     <h3>Recent tweets</h3>
     {% if tweets %}
         <ul>
