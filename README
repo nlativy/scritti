@@ -1,3 +1,16 @@
 scritti - Simple blog software
 
-This software was created for my personal blog.
+This software was created for my personal blog so may not
+fit your needs, sorry.
+
+Scritti requires the following components:
+
+    * Askimet
+    * python-twitter
+    * django-tagging
+    * markdown
+    * django-whoosh
+    * BeautifulSoup
+    * pygments
+
+It also only works with the latest Django from SVN.
