@@ -6,6 +6,7 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 SITE_NAME = 'In Search of Lost Time'
 SITE_AUTHOR = 'Nicholas Lativy'
 SITE_URL = 'http://localhost:8000'
+WORDPRESS_API_KEY= '' # Set this for akismet
 
 TWITTER_USER = 'nlativy'
 NUMBER_OF_TWEETS = 3
