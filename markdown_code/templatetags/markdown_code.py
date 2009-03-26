@@ -8,3 +8,8 @@ register = template.Library()
 @stringfilter
 def markdown_code(txt):
     return markdown_pygment(txt)
+
+@register.filter
+@stringfilter
+def markdown_comment(txt):
+    return markdown_pygment(txt, stripimg=True)

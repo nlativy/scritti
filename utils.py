@@ -45,7 +45,7 @@ def markdown_pygment(txt, linenos="table", stripimg=False):
     for img in soup.findAll('img'):
         dirty = True
         if stripimg:
-            img.extract()
+            img.replaceWith("[IMAGES NOT ALLOWED IN COMMENTS]")
         else:
             # learn BeautifulSoup and clean this up
             img['class'] = 'postimg'

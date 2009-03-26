@@ -11,5 +11,5 @@ class MarkdownComment(Comment):
         # if not self.comment_html:
         #     self.is_public = False
 
-        self.comment_html = markdown_pygment(self.comment)
+        self.comment_html = markdown_pygment(self.comment, stripimg=True)
         super(MarkdownComment, self).save()
