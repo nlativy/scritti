@@ -13,17 +13,19 @@ class MarkdownComment(Comment):
         from akismet import Akismet
         a = Akismet(settings.WORDPRESS_API_KEY, blog_url=settings.SITE_URL)
         akismet_data = {}
-        akismet_data['user_ip'] = this.ip_address
+        akismet_data['user_ip'] = self.ip_address
+        # TODO: get request data
         #akismet_data['user_agent'] = request.META['HTTP_USER_AGENT']
-        akismet_data['comment_author'] = this.name
-        akismet_data['comment_author_email'] = this.email
-        akismet_data['comment_author_url'] = this.url
+        akismet_data['user_agent'] = ''
+        akismet_data['comment_author'] = self.name
+        akismet_data['comment_author_email'] = self.email
+        akismet_data['comment_author_url'] = self.url
         akismet_data['comment_type'] = 'comment'
 
-        self.is_spam = a.comment_check(this.comment, akismet_data)
+        self.is_spam = a.comment_check(self.comment, akismet_data)
 
         # hide spam comments
-        self.is_public = self.is_spam
+        self.is_public = not self.is_spam
 
     def save(self):
         # Spam check new comments
