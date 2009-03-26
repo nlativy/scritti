@@ -8,6 +8,10 @@ SITE_AUTHOR = 'Nicholas Lativy'
 SITE_URL = 'http://localhost:8000'
 WORDPRESS_API_KEY= '' # Set this for akismet
 
+CACHE_BACKEND = 'file://' + os.path.join(os.environ["HOME"], 'local/tmp/scritti_cache')
+CACHE_MIDDLEWARE_SECONDS = 15 * 60
+CACHE_MIDDLEWARE_KEY_PREFIX = 'nrl57892'
+
 TWITTER_USER = 'nlativy'
 NUMBER_OF_TWEETS = 3
 
@@ -74,9 +78,11 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 ROOT_URLCONF = 'scritti.urls'
