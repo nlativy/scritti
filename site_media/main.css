@@ -282,9 +282,12 @@ pre {
     font-size: 1.4em;
 }
 
-.postImage {
+.postimg {
     border 0px;
     padding: 5px;
+}
+
+.image-wrapper {
     text-align: center;
 }
 

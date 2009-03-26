@@ -1,7 +1,7 @@
 from htmlentitydefs import name2codepoint
 from HTMLParser import HTMLParser
 from markdown import markdown
-from BeautifulSoup import BeautifulSoup
+from BeautifulSoup import BeautifulSoup, Tag
 from pygments.lexers import LEXERS, get_lexer_by_name
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
@@ -47,7 +47,12 @@ def markdown_pygment(txt, linenos="table", stripimg=False):
         if stripimg:
             img.extract()
         else:
-            img['class'] = 'postImage'
+            # learn BeautifulSoup and clean this up
+            img['class'] = 'postimg'
+            p = img.parent
+            imgDiv = Tag(soup, "div", [("class", "image-wrapper")])
+            imgDiv.insert(0, img)
+            p.insert(0, imgDiv)
 
     for tag in soup.findAll('pre'):
         if tag.code:
