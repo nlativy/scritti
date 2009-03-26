@@ -49,9 +49,15 @@ def markdown_pygment(txt, linenos="table", stripimg=False):
         else:
             # learn BeautifulSoup and clean this up
             img['class'] = 'postimg'
+            toWrap = img
             p = img.parent
+            if p.name == 'a':
+                # This is a link, wrap the div around the parent of the link
+                toWrap = p
+                p = p.parent
+
             imgDiv = Tag(soup, "div", [("class", "image-wrapper")])
-            imgDiv.insert(0, img)
+            imgDiv.insert(0, toWrap)
             p.insert(0, imgDiv)
 
     for tag in soup.findAll('pre'):
