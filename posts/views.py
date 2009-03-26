@@ -48,16 +48,37 @@ def detail_date(request, post_slug, year, month, day):
         raise Http404
 
 def search(request, page=1):
+    from whoosh.support.pyparsing import ParseException
+    error = None
+    before_error = None
+    after_error = None
+    posts = []
+
     query_text = request.GET.get('q', None)
-    post_list = Post.objects.query(query_text).filter(published=True)
-    paginator = Paginator(post_list, settings.POSTS_PER_PAGE)
-
     try:
-        posts = paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        posts = paginator.page(paginator.num_pages)
+        post_list = Post.objects.query(query_text).filter(published=True)
+    except ParseException, e:
+        before_error = query_text[:e.col]
+        error = query_text[e.col]
+        if e.col < len(query_text):
+            after_error = query_text[e.col+1:]
+    
+    if not error:
+        paginator = Paginator(post_list, settings.POSTS_PER_PAGE)
 
-    return render_to_response('posts/search_results.html', {'posts': posts, 'query': query_text}, RequestContext(request))
+        try:
+            posts = paginator.page(page)
+        except (EmptyPage, InvalidPage):
+            posts = paginator.page(paginator.num_pages)
+
+    vars = {
+             'posts': posts,
+             'query': query_text,
+             'parse_error': error,
+             'before_error': before_error,
+             'after_error': after_error
+           }
+    return render_to_response('posts/search_results.html', vars, RequestContext(request))
 
 def tagged(request, tag_name, page=1):
     tags = Tag.objects.get(name=tag_name)

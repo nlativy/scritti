@@ -32,7 +32,7 @@ def _replace_html_entities(s):
     mp.close()
     return u''.join(mp.text)  
 
-def markdown_pygment(txt, linenos="table"):
+def markdown_pygment(txt, linenos="table", stripimg=False):
     """
     Convert Markdown text to Pygmentized HTML
 
@@ -41,6 +41,14 @@ def markdown_pygment(txt, linenos="table"):
     soup = BeautifulSoup(html)
     formatter = HtmlFormatter(cssclass='source', linenos=linenos)
     dirty = False
+
+    for img in soup.findAll('img'):
+        dirty = True
+        if stripimg:
+            img.extract()
+        else:
+            img['class'] = 'postImage'
+
     for tag in soup.findAll('pre'):
         if tag.code:
             txt = tag.code.renderContents()

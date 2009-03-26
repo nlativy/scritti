@@ -2,23 +2,32 @@
 
 {% block content-heading %}
 <div class="content-heading">
+    {% if parse_error %}
+    <p>Parse error on query: <em>{{before_error}}<span class="parse-error">{{parse_error}}</span>{{after_error}}</em>. Sorry, we will fix this problem in future, for now try quoting your query.</p>
+    <p>You may wish to see
+    <a href="http://www.google.com/search?hl=en&q={{query}}+site%3Ablog.lativy.org"
+        title="Search google for {{query}}">Google's results for your query</a>.
+    {% else %}
     <p>Results for search: <em>{{query}}</em></p>
+    {% endif %}
 </div>
 {% endblock %}
 
 {% block pagination %}
-    {% if posts.has_other_pages %}
-    <div class="pagination">
-    {% if posts.has_previous %}
-    <span class="prev">
-    <a href="{% url tag_page tag posts.previous_page_number %}">&lt; newer entries</a>
-    </span>
-    {% endif %}
-    {% if posts.has_next %}
-    <span class="next">
-    <a href="{% url tag_page tag posts.next_page_number %}">older entries &gt;</a>
-    </span>
-    {% endif %}
-    </div>
+    {% if not parse_error %}
+        {% if posts.has_other_pages %}
+            <div class="pagination">
+            {% if posts.has_previous %}
+                <span class="prev">
+                <a href="{% url tag_page tag posts.previous_page_number %}">&lt; newer entries</a>
+                </span>
+            {% endif %}
+            {% if posts.has_next %}
+                <span class="next">
+                <a href="{% url tag_page tag posts.next_page_number %}">older entries &gt;</a>
+                </span>
+            {% endif %}
+            </div>
+        {% endif %}
     {% endif %}
 {% endblock %}

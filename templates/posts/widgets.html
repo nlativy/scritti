@@ -37,7 +37,7 @@
 <div class="widget">
     <h3>Tag cloud</h3>
     {% load tagging_tags %}
-    {% tag_cloud_for_model posts.Post as tags with steps=6 min_count=1 distribution=log %}
+    {% tag_cloud_for_model posts.Post as tags with steps=6 min_count=2 distribution=log %}
     {% if tags %}
     <div class="tag-cloud">
     {% for tag in tags %}

@@ -4,9 +4,9 @@ from django.contrib import admin
 class PostAdmin(admin.ModelAdmin):
     fieldsets = [
             ('Post',                {'fields': ['title', 'body']}),
-            #('Date information',    {'fields': ['pub_date'], 'classes': ['collapse']}),
             ('Meta',                {'fields': ['slug', 'tags', 'author']}),
             ('Publication',         {'fields': ['published', 'allow_comments', 'is_page']}),
+            ('Date information',    {'fields': ['pub_date'], 'classes': ['collapse']}),
         ]
     list_display = ('title', 'pub_date', 'published', 'allow_comments', 'is_page', 'tags')
     list_filter = ('published', 'is_page', 'pub_date')

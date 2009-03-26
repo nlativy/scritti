@@ -22,7 +22,7 @@ class Post(models.Model):
     author = models.ForeignKey(User) 
     author.help_text = "The author of the post"
     pub_date = models.DateTimeField('publication date', null=True)
-    pub_date.help_text = "The date this post was published, set automatically"
+    pub_date.help_text = "The date this post was published, set automatically if left blank"
     tags = TagField()
     tags.help_text = "A space seperated set of tags"
     published = models.BooleanField('publish', default=False)

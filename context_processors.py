@@ -5,7 +5,6 @@ import twitter
 def properties(request):
     return {'site_name': settings.SITE_NAME,
             'site_author': settings.SITE_AUTHOR,
-            'media_url': settings.MEDIA_URL,
             'site_url': settings.SITE_URL}
 
 def tweets(request):
