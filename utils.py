@@ -60,6 +60,14 @@ def markdown_pygment(txt, linenos="table", stripimg=False):
             imgDiv.insert(0, toWrap)
             p.insert(0, imgDiv)
 
+            # Remove surrounding <p></p> to make HTML valid
+            # This is all rather horrible but works with my blog
+            # posts - need to fix so that the code is correct in all cases
+            # easiest way may be to modify markdown itself
+            para = imgDiv.parent
+            if para.name == 'p':
+                para.replaceWith(imgDiv)
+
     for tag in soup.findAll('pre'):
         if tag.code:
             txt = tag.code.renderContents()
