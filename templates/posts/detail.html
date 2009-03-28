@@ -1,5 +1,7 @@
 {% extends "posts/base.html" %}
 
+{% block title %}{{site_name}} - {{post.title}}{% endblock %}
+
 {% block content %}
     {% if preview or legacy_url%}
     <div class="content-heading">
