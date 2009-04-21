@@ -53,7 +53,7 @@
     {% if tweets %}
         <ul>
         {% for tweet in tweets %}
-        <li>'{{tweet.text}}'
+        <li>'{{tweet.text|urlize}}'
         <a rel="me" href="{{twitter_url}}/status/{{tweet.id}}">{{tweet.relative_created_at}}</a>
         </li>
         {% endfor %}
