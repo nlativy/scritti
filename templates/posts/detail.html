@@ -8,11 +8,6 @@
         {% if preview %}
         <p>This is a preview of an unpublished post.</p>
         {% endif %}
-        {% if legacy_url %}
-        <p>You are viewing this post at an old URL only now supported
-        for the purpose of backwards compatability. Please use the new
-        <a href="{{post.get_absolute_url}}" rel="new url">URL for this post</a></p>
-        {% endif %}
     </div>
     {% endif %}
 

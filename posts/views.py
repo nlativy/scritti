@@ -1,10 +1,11 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.views.generic.list_detail import object_list
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 from scritti.posts.models import Post
 
@@ -41,11 +42,7 @@ def detail(request, post_slug):
 
 # Legacy URL handler
 def detail_date(request, post_slug, year, month, day):
-    post = get_object_or_404(Post, slug=post_slug, published=True)
-    if post.pub_date.year == int(year) and post.pub_date.month == int(month) and post.pub_date.day == int(day):
-        return render_to_response('posts/detail.html', {'post': post, 'legacy_url': True}, RequestContext(request))
-    else:
-        raise Http404
+    return HttpResponseRedirect(reverse('post_view', args=[post_slug]))
 
 def search(request, page=1):
     from whoosh.support.pyparsing import ParseException
